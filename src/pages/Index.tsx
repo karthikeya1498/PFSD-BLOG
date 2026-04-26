@@ -8,6 +8,7 @@ import FusionLayers from "@/components/blog/FusionLayers";
 
 import architecture from "@/assets/architecture-diagram.png";
 import dashboard from "@/assets/photo_2026-04-26_12-58-15.jpg";
+import realtimeMonitoring from "@/assets/photo_2026-04-26_12-58-14.jpg";
 import extensionUi from "@/assets/extension-ui.jpg";
 import codeCore from "@/assets/code-core-engine.jpg";
 import codeFusion from "@/assets/code-fusion.jpg";
@@ -276,7 +277,7 @@ const Index = () => {
 
           <h4 className="blog-h4">Real-time Threat Monitoring Interface</h4>
           <figure className="blog-figure">
-            <img src={dashboard} alt="TrustShield AI real-time threat monitoring interface" loading="lazy" />
+            <img src={realtimeMonitoring} alt="TrustShield AI real-time threat monitoring interface" loading="lazy" />
             <figcaption>
               <strong>Figure 6.1.</strong> Live threat monitoring interface displaying real-time phishing detection results,
               risk scores, and automated threat intelligence feeds from the TrustShield AI system.
