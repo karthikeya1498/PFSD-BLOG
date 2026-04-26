@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Linux+Libertine:wght@400;700&family=Lora:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TrustShield AI — Blog editorial aesthetic.
+   Warm light parchment canvas, ink black text, scholarly serif headings.
+   All colors HSL.
+*/
+
+@layer base {
+  :root {
+    /* Warm parchment / paper */
+    --background: 40 30% 97%;
+    --foreground: 220 15% 18%;
+
+    --card: 40 25% 99%;
+    --card-foreground: 220 15% 18%;
+
+    --popover: 40 25% 99%;
+    --popover-foreground: 220 15% 18%;
+
+    /* Blog-style link blue */
+    --primary: 215 75% 38%;
+    --primary-foreground: 40 30% 97%;
+
+    /* Soft sidebar / infobox */
+    --secondary: 40 25% 93%;
+    --secondary-foreground: 220 15% 22%;
+
+    --muted: 40 20% 92%;
+    --muted-foreground: 220 10% 40%;
+
+    /* Warm ochre accent */
+    --accent: 30 70% 45%;
+    --accent-foreground: 40 30% 97%;
+
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 40 30% 97%;
+
+    --warning: 35 85% 45%;
+    --warning-foreground: 220 15% 18%;
+
+    --border: 40 15% 82%;
+    --input: 40 15% 82%;
+    --ring: 215 75% 38%;
+
+    --radius: 0.25rem;
+
+    /* Infobox / quotebox tones */
+    --infobox-bg: 40 30% 95%;
+    --infobox-border: 40 15% 78%;
+    --quote-bg: 45 40% 92%;
+    --code-bg: 220 15% 96%;
+    --code-border: 220 10% 85%;
+
+    --sidebar-background: 40 25% 95%;
+    --sidebar-foreground: 220 15% 22%;
+    --sidebar-primary: 215 75% 38%;
+    --sidebar-primary-foreground: 40 30% 97%;
+    --sidebar-accent: 40 20% 90%;
+    --sidebar-accent-foreground: 220 15% 22%;
+    --sidebar-border: 40 15% 82%;
+    --sidebar-ring: 215 75% 38%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gray-50 text-foreground antialiased;
+    font-family: 'Segoe UI', 'Inter', 'Source Sans 3', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Linux Libertine', 'Lora', Georgia, serif;
+    font-weight: 700;
+    color: hsl(var(--foreground));
+    letter-spacing: -0.005em;
+  }
+
+  /* Blog-style heading underlines */
+  h1.wiki-title {
+    @apply text-5xl md:text-6xl font-bold pb-4 mb-6 border-b-2 border-primary;
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--foreground)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  h2.wiki-h2 {
+    @apply text-3xl md:text-4xl font-semibold pb-3 mt-12 mb-6 border-b border-border;
+    font-family: 'Linux Libertine', 'Lora', Georgia, serif;
+    color: hsl(var(--foreground));
+  }
+  h3.wiki-h3 {
+    @apply text-2xl md:text-3xl font-semibold mt-10 mb-4;
+    font-family: 'Linux Libertine', 'Lora', Georgia, serif;
+    color: hsl(var(--foreground));
+  }
+  h4.wiki-h4 {
+    @apply text-xl font-semibold mt-8 mb-3 text-foreground;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
+    color: hsl(var(--foreground));
+  }
+
+  a.blog-link {
+    color: hsl(var(--primary));
+    text-decoration: none;
+  }
+  a.blog-link:hover {
+    text-decoration: underline;
+  }
+}
+
+@layer components {
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .serif {
+    font-family: 'Linux Libertine', 'Lora', Georgia, serif;
+  }
+
+  .blog-prose {
+    @apply mb-8 text-base md:text-[18px] leading-[1.8] text-foreground;
+  }
+  .blog-prose p { 
+    @apply mb-6 text-base md:text-[18px] leading-[1.8] text-foreground;
+  }
+  .blog-prose p strong { @apply font-semibold text-primary; }
+
+  .blog-prose ul {
+    @apply list-disc pl-7 mb-4 space-y-1.5;
+  }
+  .blog-prose ol {
+    @apply list-decimal pl-7 mb-4 space-y-1.5;
+  }
+  .blog-prose li {
+    @apply text-foreground leading-[1.7];
+  }
+
+  /* Infobox (right-floated card) */
+  .infobox {
+    background: hsl(var(--infobox-bg));
+    border: 1px solid hsl(var(--infobox-border));
+    @apply rounded-sm text-sm;
+  }
+  .infobox-title {
+    background: hsl(var(--secondary));
+    @apply px-3 py-2 text-center font-semibold serif text-base border-b;
+    border-color: hsl(var(--infobox-border));
+  }
+  .infobox-row {
+    @apply grid grid-cols-3 gap-2 px-3 py-1.5 border-b;
+    border-color: hsl(var(--infobox-border));
+  }
+  .infobox-row:last-child { @apply border-b-0; }
+  .infobox-row .label {
+    @apply font-semibold text-foreground col-span-1;
+  }
+  .infobox-row .value {
+    @apply col-span-2 text-foreground;
+  }
+
+  /* Quote box / pull quote */
+  .quotebox {
+    background: hsl(var(--quote-bg));
+    border-left: 4px solid hsl(var(--accent));
+    @apply rounded-sm px-6 py-4 my-6 italic serif text-lg;
+  }
+
+  /* Section cards */
+  .section-card {
+    @apply bg-white rounded-lg shadow-sm p-6 mb-8 border border-gray-100;
+    transition: all 0.3s ease;
+  }
+  .section-card:hover {
+    @apply shadow-md transform scale-[1.01];
+  }
+  
+  /* Highlight boxes */
+  .highlight-box {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.1) 0%, hsl(var(--primary) / 0.05) 100%);
+    border-left: 5px solid hsl(var(--primary));
+    @apply p-6 rounded-lg my-6;
+  }
+  
+  .highlight-box.accent {
+    background: linear-gradient(135deg, hsl(var(--accent) / 0.1) 0%, hsl(var(--accent) / 0.05) 100%);
+    border-left-color: hsl(var(--accent));
+  }
+  
+  .highlight-box.warning {
+    background: linear-gradient(135deg, hsl(var(--warning) / 0.1) 0%, hsl(var(--warning) / 0.05) 100%);
+    border-left-color: hsl(var(--warning));
+  }
+
+  /* Figure caption */
+  .blog-figure {
+    @apply my-6 mx-auto;
+  }
+  .blog-figure img {
+    @apply w-full h-auto rounded-sm border;
+    border-color: hsl(var(--border));
+  }
+  .blog-figure figcaption {
+    @apply text-sm text-muted-foreground mt-2 px-2 leading-snug;
+    border-top: 1px solid hsl(var(--border));
+    padding-top: 0.5rem;
+  }
+
+  /* Code panel */
+  .code-panel {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    @apply rounded-lg overflow-hidden my-6;
+  }
+  .code-panel-header {
+    @apply px-4 py-3 border-b mono text-xs flex items-center justify-between;
+    background: #2d2d2d;
+    border-color: #444;
+    color: #00ffcc;
+  }
+
+  /* Blog table */
+  .blog-table {
+    @apply w-full text-sm border-collapse my-6 bg-white rounded-lg shadow-sm overflow-hidden;
+  }
+  .blog-table th, .blog-table td {
+    @apply border px-4 py-3 text-left align-top;
+    border-color: hsl(var(--border));
+  }
+  .blog-table th {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.9) 100%);
+    @apply font-semibold serif text-white text-sm;
+  }
+  .blog-table tr:nth-child(even) td {
+    background: hsl(var(--muted) / 0.3);
+  }
+  .blog-table tr:hover td {
+    background: hsl(var(--muted) / 0.5);
+    transition: background-color 0.2s ease;
+  }
+
+  /* Table of contents */
+  .blog-toc {
+    background: hsl(var(--infobox-bg));
+    border: 1px solid hsl(var(--infobox-border));
+    @apply rounded-sm p-4 inline-block min-w-[260px];
+  }
+  .blog-toc-title {
+    @apply text-center font-semibold serif text-base mb-2 pb-2 border-b;
+    border-color: hsl(var(--infobox-border));
+  }
+}
