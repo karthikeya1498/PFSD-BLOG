@@ -12,11 +12,7 @@ const BlogNav = () => {
             <a href="#" className="blog-link hover:underline">Talk</a>
             <a href="#" className="blog-link hover:underline">Contributions</a>
           </div>
-          <div className="flex items-center gap-4">
-            <a href="#" className="blog-link hover:underline">Create account</a>
-            <a href="#" className="blog-link hover:underline">Log in</a>
-          </div>
-        </div>
+                  </div>
       </div>
 
       {/* Main nav */}
@@ -52,7 +48,7 @@ const BlogNav = () => {
       {/* Article tabs */}
       <div className="border-t border-border bg-background">
         <div className="container mx-auto flex items-center gap-1 text-sm">
-          {["Blog", "Talk", "Read", "Edit", "View history"].map((t, i) => (
+          {["Blog", "Talk", "Read", "View history"].map((t, i) => (
             <a
               key={t}
               href="#"

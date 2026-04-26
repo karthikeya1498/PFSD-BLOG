@@ -186,10 +186,6 @@
   /* Section cards */
   .section-card {
     @apply bg-white rounded-lg shadow-sm p-6 mb-8 border border-gray-100;
-    transition: all 0.3s ease;
-  }
-  .section-card:hover {
-    @apply shadow-md transform scale-[1.01];
   }
   
   /* Highlight boxes */
@@ -251,11 +247,7 @@
   .blog-table tr:nth-child(even) td {
     background: hsl(var(--muted) / 0.3);
   }
-  .blog-table tr:hover td {
-    background: hsl(var(--muted) / 0.5);
-    transition: background-color 0.2s ease;
-  }
-
+  
   /* Table of contents */
   .blog-toc {
     background: hsl(var(--infobox-bg));
