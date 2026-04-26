@@ -1,0 +1,480 @@
+const fs = require('fs');
+const path = require('path');
+
+// Read the HTML content
+const htmlContent = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
+
+// Create a clean HTML version for document generation
+const cleanHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustShield AI - Phishing Detection Framework</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Inter', 'Source Sans 3', 'Helvetica Neue', sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 16px;
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 12px;
+        }
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 40px;
+            margin-bottom: 16px;
+        }
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 32px;
+            margin-bottom: 12px;
+        }
+        p {
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        strong {
+            color: #2563eb;
+            font-weight: 600;
+        }
+        code {
+            background: #f3f4f6;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        pre {
+            background: #1e1e1e;
+            color: #00ffcc;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: 12px 16px;
+            text-align: left;
+        }
+        th {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        tr:nth-child(even) td {
+            background: #f9fafb;
+        }
+        ul, ol {
+            margin-bottom: 16px;
+            padding-left: 28px;
+        }
+        li {
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+        blockquote {
+            border-left: 4px solid #2563eb;
+            padding-left: 16px;
+            margin: 20px 0;
+            font-style: italic;
+            background: #f0f9ff;
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+        }
+        .section-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
+            border-left: 5px solid #2563eb;
+            padding: 24px;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+        figure {
+            margin: 24px 0;
+            text-align: center;
+        }
+        figcaption {
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        @media print {
+            body { margin: 0; padding: 10px; }
+            .section-card { break-inside: avoid; }
+            h2, h3, h4 { break-after: avoid; }
+            table { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <h1>TrustShield AI: Hybrid ML-Based Phishing Detection using Flask, scikit-learn & MongoDB</h1>
+    
+    <div class="section-card">
+        <h2>Abstract</h2>
+        <p><strong>TrustShield AI</strong> is a multi-layered, AI-driven phishing detection framework designed to identify and mitigate sophisticated email-based attacks in real time. Built on a three-tier architecture comprising a frontend dashboard, a Flask-based asynchronous backend, and a MongoDB persistence layer, the system fuses six independent intelligence signals — machine learning prediction, URL intelligence, rule heuristics, emotional analysis, behavioural anomalies and attachment inspection — into a single sub-second verdict. Verdicts are accompanied by natural-language explanations generated by a locally hosted large language model (LLM).</p>
+        
+        <p>The system continuously stores every analyzed email, along with its classification metadata, in a live <em>retraining corpus</em> that is later used to update the active model. This ensures that the detection engine adapts to new phishing techniques and evolving attack patterns over time. TrustShield AI integrates with email clients through a Chrome Manifest V3 browser extension and with security operations teams through a real-time SOC dashboard.</p>
+    </div>
+
+    <div class="section-card">
+        <h2>1. Overview</h2>
+        <p>Phishing remains one of the most pervasive and damaging vectors in modern cybersecurity. Traditional rule-based spam filters rely on static keyword lists and sender blocklists, which attackers routinely defeat through paraphrasing, typosquatting, and personalised spear-phishing campaigns. TrustShield AI was designed to address this gap by combining classical machine learning, rule heuristics, and language-model reasoning in a single low-latency pipeline.</p>
+        
+        <div class="highlight-box">
+            "TrustShield does not replace human judgement — it protects the human inside the loop, reducing cognitive load on the people most often targeted by phishing campaigns."
+        </div>
+        
+        <p>The framework is intentionally lightweight. It runs on commodity hardware, uses an asynchronous Flask backend for non-blocking inference, and depends only on open-source libraries. Every architectural decision is biased toward <em>observability</em>, <em>explainability</em>, and <em>continuous learning</em>.</p>
+    </div>
+
+    <div class="section-card">
+        <h2>2. Background and motivation</h2>
+        <p>Conventional email security deployments compute threat levels from static rule-sets that perform minimal processing on inbound mail. As a result, large volumes of malicious messages still reach end-users. Three structural problems motivated the design of TrustShield AI:</p>
+        
+        <ol>
+            <li><strong>Exposure window.</strong> When a phishing campaign slips past static filters, the user becomes the last line of defence — a position humans are consistently poor at occupying.</li>
+            <li><strong>Rigidity of hardcoded rules.</strong> Trigger-word filters cannot keep pace with adversarial paraphrasing or LLM-generated phishing content.</li>
+            <li><strong>Latency budget.</strong> Robust analysis must not delay mail delivery. Any practical solution has only a few hundred milliseconds per message.</li>
+        </ol>
+        
+        <p>TrustShield's response is the <strong>TrustShield Orchestrator (TSO)</strong> — a horizontally cooperating set of intelligence modules rather than a monolithic classifier. The orchestrator coordinates analysis across three architectural tiers and six analytic layers, returning a unified verdict that is both quantitative (a trust score) and qualitative (a natural-language explanation).</p>
+    </div>
+
+    <div class="section-card">
+        <h2>3. System architecture</h2>
+        
+        <h3>3.1 Three-tier design</h3>
+        <p>TrustShield AI is structured into three logical tiers. This separation allows each tier to scale, fail and be replaced independently of the others.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Tier</th>
+                    <th>Technology</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td className="font-semibold">Presentation</td>
+                    <td>SOC dashboard · Chrome extension</td>
+                    <td>Surfaces verdicts, alerts and live telemetry to the user.</td>
+                </tr>
+                <tr>
+                    <td className="font-semibold">Application</td>
+                    <td>Flask API · asyncio executor · Detection engine · LLM gateway</td>
+                    <td>Performs analysis, fusion scoring and explanation generation.</td>
+                </tr>
+                <tr>
+                    <td className="font-semibold">Data</td>
+                    <td>MongoDB · Model registry · Retrain corpus</td>
+                    <td>Persists scans, model artifacts and the living dataset.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-card">
+        <h2>4. Technology stack</h2>
+        <p>The project is implemented entirely in open-source technologies. The table below enumerates each architectural layer, the technology used, and its purpose within the system.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Layer</th>
+                    <th>Technology</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Frontend</td>
+                    <td>HTML5, CSS3, JavaScript (Vanilla)</td>
+                    <td>Dashboard UI, real-time updates</td>
+                </tr>
+                <tr>
+                    <td>Backend</td>
+                    <td>Flask (Python), asyncio</td>
+                    <td>REST API, async processing</td>
+                </tr>
+                <tr>
+                    <td>Database</td>
+                    <td>MongoDB</td>
+                    <td>Email storage, model artifacts</td>
+                </tr>
+                <tr>
+                    <td>ML Framework</td>
+                    <td>scikit-learn</td>
+                    <td>Classification models</td>
+                </tr>
+                <tr>
+                    <td>LLM</td>
+                    <td>Ollama (phi model)</td>
+                    <td>Natural language explanations</td>
+                </tr>
+                <tr>
+                    <td>Browser Extension</td>
+                    <td>Chrome Manifest V3</td>
+                    <td>Client-side integration</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p><strong>Table 1.</strong> Engineering stack of TrustShield AI.</p>
+    </div>
+
+    <div class="section-card">
+        <h2>5. Detection engine</h2>
+        <p>The detection engine is the analytic core of TrustShield AI. Each incoming email is normalised, vectorised and dispatched to a non-blocking executor that runs ML inference alongside five rule-driven intelligence modules. The layers do not wait on each other — the pipeline keeps moving even as the LLM generates a human-readable explanation in the background.</p>
+        
+        <h3>5.1 Aggressive fusion</h3>
+        <p>TrustShield uses a strategy referred to internally as <em>aggressive fusion</em>. Every layer returns a numeric score in <code>[0, 1]</code>. A weighted base score is computed across all layers, then multiplied by a contextual <strong>risk multiplier</strong> when the message touches financial keywords, account-state language or high emotional intensity. A trust score below the critical threshold flips the verdict to <em> phishing · critical risk</em>.</p>
+        
+        <h3>5.2 Scoring layers</h3>
+        <p>The six intelligence layers and their default fusion weights are as follows.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Layer</th>
+                    <th>Signal Type</th>
+                    <th>Weight</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ML Classifier</td>
+                    <td>Machine learning prediction</td>
+                    <td>0.35</td>
+                    <td>scikit-learn text classification</td>
+                </tr>
+                <tr>
+                    <td>URL Intelligence</td>
+                    <td>Heuristic URL analysis</td>
+                    <td>0.20</td>
+                    <td>Domain reputation, TLD risk</td>
+                </tr>
+                <tr>
+                    <td>Rule Heuristics</td>
+                    <td>Pattern matching</td>
+                    <td>0.15</td>
+                    <td>Keyword, sender analysis</td>
+                </tr>
+                <tr>
+                    <td>Emotional Analysis</td>
+                    <td>Sentiment detection</td>
+                    <td>0.10</td>
+                    <td>Urgency, fear indicators</td>
+                </tr>
+                <tr>
+                    <td>Behavioural</td>
+                    <td>Anomaly detection</td>
+                    <td>0.10</td>
+                    <td>Unusual patterns</td>
+                </tr>
+                <tr>
+                    <td>Attachment</td>
+                    <td>File analysis</td>
+                    <td>0.10</td>
+                    <td>Executable detection</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p><strong>Table 2.</strong> Default weights of the aggressive fusion algorithm. Weights are configurable per deployment.</p>
+    </div>
+
+    <div class="section-card">
+        <h2>6. SOC dashboard</h2>
+        <p>The Security Operations Centre (SOC) dashboard is a web-based interface that allows security analysts to monitor the live behaviour of TrustShield AI. It is implemented in HTML, CSS and Vanilla JavaScript, and consumes the same Flask API as the browser extension.</p>
+        
+        <p>The dashboard surfaces four primary views:</p>
+        <ul>
+            <li><strong>Live activity feed.</strong> Every scan and every verdict, streamed in real time.</li>
+            <li><strong>Risk levels and trends.</strong> Hourly and daily phishing pressure, segmented per tenant.</li>
+            <li><strong>Model information.</strong> Active model version, accuracy, calibration and drift indicators.</li>
+            <li><strong>Alerts and notifications.</strong> High-risk verdicts, drift alarms and pipeline failures, wired to operations channels.</li>
+        </ul>
+    </div>
+
+    <div class="section-card">
+        <h2>7. Browser extension</h2>
+        <p>The TrustShield browser extension is implemented as a Chrome <em> Manifest V3</em> extension. It reads the email body and embedded URLs the instant a message is opened inside Gmail or Outlook, posts the payload to the <code>/analyze</code> endpoint over HTTPS, and renders the verdict inline within the email client.</p>
+        
+        <p>The extension performs four steps for each opened message:</p>
+        <ol>
+            <li>Reads the email content and extracts URLs from the active DOM.</li>
+            <li>Sends the payload to the Flask <code>/analyze</code> endpoint with a rotating API key.</li>
+            <li>Displays the risk score, classification and triggered rules to the user.</li>
+            <li>Mirrors the verdict to the SOC dashboard via the same logging spine.</li>
+        </ol>
+    </div>
+
+    <div class="section-card">
+        <h2>8. Living retraining dataset</h2>
+        <p>A central design principle of TrustShield AI is that the model must <em> learn from the traffic it sees</em>. The system does not rely solely on static phishing corpora. Every email processed through either the dashboard or the browser extension is persisted to MongoDB, along with its classification result, confidence score, risk level, source and timestamp.</p>
+        
+        <p>During retraining, the system retrieves this stored email data from the database and uses it to update the active machine learning model. This allows the model to adapt to <strong>new phishing techniques and evolving attack patterns</strong> over time. The dataset is therefore a <em>living</em>, continuously growing record of real-world email behaviour.</p>
+        
+        <h4>Dataset schema</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td className="mono">email_content</td><td>String</td><td>The full text of the analyzed email.</td></tr>
+                <tr><td className="mono">label</td><td>Enum</td><td>Classification: <em>phishing</em> or <em>legitimate</em>.</td></tr>
+                <tr><td className="mono">confidence_score</td><td>Float [0,1]</td><td>Model probability for the predicted class.</td></tr>
+                <tr><td className="mono">risk_level</td><td>Enum</td><td>Bucketed severity: low · medium · high · critical.</td></tr>
+                <tr><td className="mono">source</td><td>Enum</td><td>Origin of the analysis: <em>dashboard</em> or <em>extension</em>.</td></tr>
+                <tr><td className="mono">timestamp</td><td>ISODate</td><td>Time of analysis (UTC).</td></tr>
+            </tbody>
+        </table>
+        
+        <p><strong>Table 3.</strong> Schema of the TrustShield retraining corpus stored in MongoDB.</p>
+        
+        <p>This continuous-learning loop ensures that the model remains <strong>adaptive, up-to-date and effective</strong> against contemporary phishing campaigns, without requiring manual curation of new training data.</p>
+    </div>
+
+    <div class="section-card">
+        <h2>9. Performance evaluation</h2>
+        <p>TrustShield AI was evaluated under three representative threat scenarios. The results below were obtained on a workstation with 16 GB RAM running a single Flask worker against a MongoDB instance on the same host.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Detection rate</th>
+                    <th>Avg. latency</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td className="font-semibold">Standard spam</td>
+                    <td>≈ 98%</td>
+                    <td>&lt; 150 ms</td>
+                    <td>A cohesive filtering block formed across the corpus — almost zero leakage.</td>
+                </tr>
+                <tr>
+                    <td className="font-semibold">Spear-phishing</td>
+                    <td>≈ 95%</td>
+                    <td>&lt; 200 ms</td>
+                    <td>Manipulated domains and bespoke pretexts — fusion held the line.</td>
+                </tr>
+                <tr>
+                    <td className="font-semibold">Burst phishing</td>
+                    <td>≥ 90%</td>
+                    <td>&lt; 220 ms</td>
+                    <td>High-volume rapid-fire campaigns — the asynchronous pipeline absorbed the wave.</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p><strong>Table 4.</strong> Detection rates and latencies measured across three threat scenarios.</p>
+    </div>
+
+    <div class="section-card">
+        <h2>10. Future work</h2>
+        <p>Several directions are currently being explored to extend the framework:</p>
+        <ul>
+            <li><strong>Transformer-based comprehension</strong> — semantic understanding of intent rather than purely lexical features.</li>
+            <li><strong>Live threat-intelligence APIs</strong> — globally sourced telemetry as a persistent additional defence layer.</li>
+            <li><strong>Edge inference</strong> — execution of the model inside the extension itself, eliminating the network round-trip.</li>
+            <li><strong>Autonomous remediation</strong> — automatic quarantine and sender disposal triggered before the user ever sees the message.</li>
+        </ul>
+    </div>
+
+    <div class="section-card">
+        <h2>11. See also</h2>
+        <ul>
+            <li><a href="#">Phishing</a></li>
+            <li><a href="#">Email filtering</a></li>
+            <li><a href="#">Machine learning</a></li>
+            <li><a href="#">Security information and event management (SIEM)</a></li>
+            <li><a href="#">Large language model</a></li>
+        </ul>
+    </div>
+
+    <div class="section-card">
+        <h2>12. References</h2>
+        <ol className="text-sm">
+            <li>Karthikeya et al. <em>TrustShield AI: a multi-layer phishing detection framework.</em> Engineering Journal, Issue 04, 2026.</li>
+            <li>Pedregosa, F. et al. <em>Scikit-learn: Machine Learning in Python.</em> JMLR 12, 2011.</li>
+            <li>Grinberg, M. <em>Flask Web Development.</em> O'Reilly, 2018.</li>
+            <li>Chodorow, K. <em>MongoDB: The Definitive Guide.</em> O'Reilly, 2019.</li>
+            <li>Google. <em>Chrome Extensions: Manifest V3 documentation.</em> 2024.</li>
+            <li>Ollama Project. <em>phi model card.</em> 2024.</li>
+        </ol>
+        
+        <div style="margin-top: 40px; padding-top: 16px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #6b7280;">
+            This blog was last edited on 26 April 2026, by <a href="#">Karthikeya</a>.
+            Text is available under the open documentation license; the source code is published on <a href="https://github.com/Tejus468/pfsd_project">github.com/Tejus468/pfsd_project</a>.
+        </div>
+        
+        <div style="margin-top: 16px; font-size: 12px; color: #6b7280;">
+            TrustShield Blog · Engineering Journal · 2026<br>
+            Written by Karthikeya · Issue 04
+        </div>
+    </div>
+</body>
+</html>`;
+
+// Write the clean HTML to a file
+fs.writeFileSync(path.join(__dirname, 'trustshield-ai-document.html'), cleanHtml);
+
+console.log('Clean HTML document generated: trustshield-ai-document.html');
+console.log('You can now:');
+console.log('1. Open this HTML file in a browser and use "Print to PDF"');
+console.log('2. Copy the content to Microsoft Word');
+console.log('3. Use online converters to transform HTML to PDF/Word');
