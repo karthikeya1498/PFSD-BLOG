@@ -7,7 +7,7 @@ import StackTable from "@/components/blog/StackTable";
 import FusionLayers from "@/components/blog/FusionLayers";
 
 import architecture from "@/assets/architecture-diagram.png";
-import dashboard from "@/assets/dashboard-soc.jpg";
+import dashboard from "@/assets/photo_2026-04-26_12-58-15.jpg";
 import extensionUi from "@/assets/extension-ui.jpg";
 import codeCore from "@/assets/code-core-engine.jpg";
 import codeFusion from "@/assets/code-fusion.jpg";
