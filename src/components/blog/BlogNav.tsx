@@ -1,4 +1,4 @@
-import { Github, Search } from "lucide-react";
+import { Github } from "lucide-react";
 import logo from "@/assets/trustshield-logo.png";
 
 const BlogNav = () => {
@@ -9,7 +9,6 @@ const BlogNav = () => {
         <div className="container mx-auto flex items-center justify-between py-1.5 text-xs text-muted-foreground">
           <div className="flex items-center gap-4">
             <span>Not logged in</span>
-            <a href="#" className="blog-link hover:underline">Talk</a>
             <a href="#" className="blog-link hover:underline">Contributions</a>
           </div>
                   </div>
@@ -25,14 +24,6 @@ const BlogNav = () => {
           </div>
         </a>
 
-        <div className="hidden md:flex flex-1 max-w-md relative">
-          <input
-            type="text"
-            placeholder="Search TrustShield Blog"
-            className="w-full px-3 py-1.5 pr-9 border border-border rounded-sm bg-background text-sm focus:outline-none focus:border-primary"
-          />
-          <Search className="absolute right-2.5 top-2 h-4 w-4 text-muted-foreground" />
-        </div>
 
         <a
           href="https://github.com/Tejus468/pfsd_project"
@@ -48,7 +39,7 @@ const BlogNav = () => {
       {/* Article tabs */}
       <div className="border-t border-border bg-background">
         <div className="container mx-auto flex items-center gap-1 text-sm">
-          {["Blog", "Talk", "Read", "View history"].map((t, i) => (
+          {["Blog", "Read", "View history"].map((t, i) => (
             <a
               key={t}
               href="#"
