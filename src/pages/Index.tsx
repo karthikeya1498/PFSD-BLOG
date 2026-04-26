@@ -446,7 +446,7 @@ const Index = () => {
           <div className="section-card">
             <h2 id="sec-12" className="blog-h2">12. References</h2>
           <ol className="text-sm">
-            <li>TrustShield AI Team. <em>TrustShield AI: a multi-layer phishing detection framework.</em> Engineering Journal, Issue 04, 2026.</li>
+            <li>TrustShield AI Team. <em>TrustShield AI: a multi-layer phishing detection framework.</em> Issue 04, 2026.</li>
             <li>Pedregosa, F. et al. <em>Scikit-learn: Machine Learning in Python.</em> JMLR 12, 2011.</li>
             <li>Grinberg, M. <em>Flask Web Development.</em> O'Reilly, 2018.</li>
             <li>Chodorow, K. <em>MongoDB: The Definitive Guide.</em> O'Reilly, 2019.</li>
@@ -468,7 +468,7 @@ const Index = () => {
 
       <footer className="border-t border-border bg-secondary/40 mt-12 py-6">
         <div className="container mx-auto max-w-[1100px] flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <div>TrustShield Blog · Engineering Journal · 2026</div>
+          <div>TrustShield Blog · 2026</div>
           <div>Written by TrustShield AI Team · Issue 04</div>
         </div>
       </footer>
