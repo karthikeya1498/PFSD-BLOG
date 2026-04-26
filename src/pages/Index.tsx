@@ -446,10 +446,12 @@ const Index = () => {
           <div className="section-card">
             <h2 id="sec-12" className="blog-h2">12. References</h2>
           <ol className="text-sm">
-            <li>TrustShield AI Team. <em>TrustShield AI: a multi-layer phishing detection framework.</em> Issue 04, 2026.</li>
+            <li>F. P. E. Putra, A. Zulfikri, G. Arifin, and R. M. Ilhamsyah, "Analysis of phishing attack trends, impacts and prevention methods: Literature study," <em>Brilliance: Research of Artificial Intelligence</em>, vol. 4, no. 1, pp. 413–421, 2024.</li>
+            <li>M. Alghenaim, G. Alkawsi, and C. R. Barnhart, "The state of the art in ai-based phishing detection: A systematic literature review," <em>Studies in Computational Intelligence</em>, vol. 1178, 2025.</li>
+            <li>K. Afane, W. Wei, Y. Mao, J. Farooq, and J. Chen, "Next-generation phishing: How llm agents empower cyber attackers," <em>IEEE International Conference on Big Data (BigData)</em>, pp. 2558–2567, 2024.</li>
+            <li>S. S. Roy, P. Thota, K. V. Naragam, and S. Nilizadeh, "From chatbots to phishbots?: Phishing scam generation in commercial large language models," <em>IEEE Symposium on Security and Privacy (SP)</em>, pp. 36–54, 2024.</li>
+            <li>P. H. Kyaw, J. Gutierrez, and A. Ghobakhlou, "A systematic review of deep learning techniques for phishing email detection," <em>Electronics</em>, vol. 13, no. 3823, Sep 2024.</li>
             <li>Pedregosa, F. et al. <em>Scikit-learn: Machine Learning in Python.</em> JMLR 12, 2011.</li>
-            <li>Grinberg, M. <em>Flask Web Development.</em> O'Reilly, 2018.</li>
-            <li>Chodorow, K. <em>MongoDB: The Definitive Guide.</em> O'Reilly, 2019.</li>
             <li>Google. <em>Chrome Extensions: Manifest V3 documentation.</em> 2024.</li>
             <li>Ollama Project. <em>phi model card.</em> 2024.</li>
           </ol>
