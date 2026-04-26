@@ -12,7 +12,7 @@ const rows: [string, React.ReactNode][] = [
   ["Extension", "Chrome MV3"],
   ["Detection latency", "< 200 ms"],
   ["Detection accuracy", "≈ 95–98%"],
-  ["Author", "Karthikeya & contributors"],
+  ["Author", "TrustShield AI Team"],
   ["Source", <a key="src" href="https://github.com/Tejus468/pfsd_project" className="blog-link">github.com/Tejus468</a>],
   ["Status", <span key="st" className="font-semibold text-accent">Active</span>],
 ];

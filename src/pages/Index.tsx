@@ -166,7 +166,7 @@ const Index = () => {
 
           <h4 className="blog-h4">System Components Overview</h4>
           <figure className="blog-figure">
-            <img src="/placeholder-image-1.jpg" alt="TrustShield AI system components overview" loading="lazy" />
+            <img src={architecture} alt="TrustShield AI system components overview" loading="lazy" />
             <figcaption>
               <strong>Figure 1.1.</strong> Detailed view of TrustShield AI system components showing the interaction
               between the frontend dashboard, Flask backend, and MongoDB database layers.
@@ -276,7 +276,7 @@ const Index = () => {
 
           <h4 className="blog-h4">Real-time Threat Monitoring Interface</h4>
           <figure className="blog-figure">
-            <img src="/placeholder-image-2.jpg" alt="TrustShield AI real-time threat monitoring interface" loading="lazy" />
+            <img src={dashboard} alt="TrustShield AI real-time threat monitoring interface" loading="lazy" />
             <figcaption>
               <strong>Figure 6.1.</strong> Live threat monitoring interface displaying real-time phishing detection results,
               risk scores, and automated threat intelligence feeds from the TrustShield AI system.
@@ -446,7 +446,7 @@ const Index = () => {
           <div className="section-card">
             <h2 id="sec-12" className="blog-h2">12. References</h2>
           <ol className="text-sm">
-            <li>Karthikeya et al. <em>TrustShield AI: a multi-layer phishing detection framework.</em> Engineering Journal, Issue 04, 2026.</li>
+            <li>TrustShield AI Team. <em>TrustShield AI: a multi-layer phishing detection framework.</em> Engineering Journal, Issue 04, 2026.</li>
             <li>Pedregosa, F. et al. <em>Scikit-learn: Machine Learning in Python.</em> JMLR 12, 2011.</li>
             <li>Grinberg, M. <em>Flask Web Development.</em> O'Reilly, 2018.</li>
             <li>Chodorow, K. <em>MongoDB: The Definitive Guide.</em> O'Reilly, 2019.</li>
@@ -456,7 +456,7 @@ const Index = () => {
           </div>
 
           <div className="mt-10 pt-4 border-t border-border text-xs text-muted-foreground">
-            This blog was last edited on 26 April 2026, by <a href="#" className="blog-link">Karthikeya</a>.
+            This blog was last edited on 26 April 2026, by <a href="#" className="blog-link">TrustShield AI Team</a>.
             Text is available under the open documentation license; the source code is
             published on{" "}
             <a href="https://github.com/Tejus468/pfsd_project" className="blog-link">
@@ -469,7 +469,7 @@ const Index = () => {
       <footer className="border-t border-border bg-secondary/40 mt-12 py-6">
         <div className="container mx-auto max-w-[1100px] flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <div>TrustShield Blog · Engineering Journal · 2026</div>
-          <div>Written by Karthikeya · Issue 04</div>
+          <div>Written by TrustShield AI Team · Issue 04</div>
         </div>
       </footer>
     </div>
